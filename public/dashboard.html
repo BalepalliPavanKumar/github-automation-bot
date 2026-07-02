@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard | GitHub Automation Bot</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h1>GitHub Automation Bot</h1>
+      </div>
+      <div class="user-strip">
+        <img id="avatar" alt="" />
+        <span id="login"></span>
+        <form action="/auth/logout" method="post">
+          <button class="ghost" type="submit">Logout</button>
+        </form>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Repositories</h2>
+          <button id="refreshRepos" class="ghost" type="button">Refresh</button>
+        </div>
+        <form id="repoForm" class="inline-form">
+          <select id="repoSelect" required>
+            <option value="">Load repositories</option>
+          </select>
+          <button type="submit">Connect</button>
+        </form>
+        <ul id="connectedRepos" class="plain-list"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Rules</h2>
+        </div>
+        <form id="ruleForm" class="rule-form">
+          <label>
+            Event
+            <select name="event_type">
+              <option value="issues">Issue</option>
+              <option value="pull_request">Pull request</option>
+              <option value="push">Push</option>
+            </select>
+          </label>
+          <label>
+            Keyword
+            <input name="keyword" placeholder="bug" required />
+          </label>
+          <label>
+            Label
+            <input name="label" placeholder="bug" />
+          </label>
+          <label>
+            Comment
+            <input name="comment" placeholder="Thanks, the bot is triaging this." />
+          </label>
+          <label class="check-row">
+            <input name="notify_slack" type="checkbox" checked />
+            Slack alert
+          </label>
+          <button type="submit">Add rule</button>
+        </form>
+        <ul id="rules" class="plain-list"></ul>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-heading">
+          <h2>Live Activity</h2>
+          <button id="refreshEvents" class="ghost" type="button">Refresh</button>
+        </div>
+        <div id="events" class="event-list"></div>
+      </section>
+    </main>
+
+    <template id="eventTemplate">
+      <article class="event-row">
+        <div>
+          <span class="status"></span>
+          <h3></h3>
+          <p></p>
+          <a target="_blank" rel="noreferrer"></a>
+        </div>
+        <ul></ul>
+      </article>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

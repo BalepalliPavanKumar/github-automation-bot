@@ -1,0 +1,22 @@
+{
+  "name": "github-automation-bot",
+  "version": "1.0.0",
+  "description": "A GitHub automation bot with OAuth, webhooks, Slack notifications, and a live dashboard.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node --check src/server.js && node --check src/store.js && node --check src/github.js && node --check src/slack.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cookie-session": "^2.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.1"
+  }
+}
